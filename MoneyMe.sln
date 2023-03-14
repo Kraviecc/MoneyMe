@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71CC88C6-C8B6-4DCE-A4A8-39AD27073BDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{012BA0B0-37BB-4069-BE7A-E31BB7FB1B82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapper", "Bootstrapper", "{607B5AFA-836E-4118-B11C-3CD57A22DA3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7EFAE1CA-DE74-4228-9D99-CFA7C6A6A2A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{708FBE3D-1031-491F-837E-2C055A6AC3D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Bootstrapper", "src\Bootstrapper\MoneyMe.Bootstrapper\MoneyMe.Bootstrapper.csproj", "{444511BA-F54E-4913-91B1-289A4FD3E7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Shared.Abstractions", "src\Shared\MoneyMe.Shared.Abstractions\MoneyMe.Shared.Abstractions.csproj", "{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Shared.Infrastructure", "src\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj", "{81BC2166-2311-4420-876B-E484574F8708}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{607B5AFA-836E-4118-B11C-3CD57A22DA3D} = {71CC88C6-C8B6-4DCE-A4A8-39AD27073BDE}
+		{7EFAE1CA-DE74-4228-9D99-CFA7C6A6A2A7} = {71CC88C6-C8B6-4DCE-A4A8-39AD27073BDE}
+		{708FBE3D-1031-491F-837E-2C055A6AC3D9} = {71CC88C6-C8B6-4DCE-A4A8-39AD27073BDE}
+		{444511BA-F54E-4913-91B1-289A4FD3E7C8} = {607B5AFA-836E-4118-B11C-3CD57A22DA3D}
+		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C} = {708FBE3D-1031-491F-837E-2C055A6AC3D9}
+		{81BC2166-2311-4420-876B-E484574F8708} = {708FBE3D-1031-491F-837E-2C055A6AC3D9}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81BC2166-2311-4420-876B-E484574F8708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81BC2166-2311-4420-876B-E484574F8708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81BC2166-2311-4420-876B-E484574F8708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81BC2166-2311-4420-876B-E484574F8708}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
