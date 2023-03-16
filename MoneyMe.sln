@@ -16,6 +16,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Shared.Abstractions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Shared.Infrastructure", "src\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj", "{81BC2166-2311-4420-876B-E484574F8708}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Investments", "Investments", "{35A98936-6544-423F-B6B7-E630E0749631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Investments.Api", "src\Modules\Investments\MoneyMe.Modules.Investments.Api\MoneyMe.Modules.Investments.Api.csproj", "{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Investments.Core", "src\Modules\Investments\MoneyMe.Modules.Investments.Core\MoneyMe.Modules.Investments.Core.csproj", "{4AF64B48-713D-4E96-B06F-F397680E6FDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +34,9 @@ Global
 		{444511BA-F54E-4913-91B1-289A4FD3E7C8} = {607B5AFA-836E-4118-B11C-3CD57A22DA3D}
 		{09478AE1-9AC0-46FE-B0D5-C7B73CD7DC8C} = {708FBE3D-1031-491F-837E-2C055A6AC3D9}
 		{81BC2166-2311-4420-876B-E484574F8708} = {708FBE3D-1031-491F-837E-2C055A6AC3D9}
+		{35A98936-6544-423F-B6B7-E630E0749631} = {7EFAE1CA-DE74-4228-9D99-CFA7C6A6A2A7}
+		{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5} = {35A98936-6544-423F-B6B7-E630E0749631}
+		{4AF64B48-713D-4E96-B06F-F397680E6FDB} = {35A98936-6544-423F-B6B7-E630E0749631}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +51,13 @@ Global
 		{81BC2166-2311-4420-876B-E484574F8708}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81BC2166-2311-4420-876B-E484574F8708}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81BC2166-2311-4420-876B-E484574F8708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA4E8CD-95EF-4388-9F21-CF0D6DA40BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF64B48-713D-4E96-B06F-F397680E6FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF64B48-713D-4E96-B06F-F397680E6FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF64B48-713D-4E96-B06F-F397680E6FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF64B48-713D-4E96-B06F-F397680E6FDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

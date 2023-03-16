@@ -1,8 +1,12 @@
+using MoneyMe.Modules.Investments.Api;
+using MoneyMe.Shared.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+builder.Services
+   .AddInfrastructure()
+   .AddInvestments();
 
 var app = builder.Build();
-app.MapControllers();
-app.MapGet("/", () => "Hello MoneyMe!");
+app.UseInfrastructure();
 
 app.Run();
