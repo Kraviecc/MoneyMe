@@ -1,6 +1,6 @@
 ﻿namespace MoneyMe.Modules.Investments.Core.Entities;
 
-public class Investment
+internal class Investment
 {
 	public Guid Id { get; set; }
 

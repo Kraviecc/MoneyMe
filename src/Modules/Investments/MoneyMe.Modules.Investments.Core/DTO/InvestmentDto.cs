@@ -2,7 +2,7 @@
 
 namespace MoneyMe.Modules.Investments.Core.DTO;
 
-public class InvestmentDto
+internal class InvestmentDto
 {
 	public Guid Id { get; set; }
 

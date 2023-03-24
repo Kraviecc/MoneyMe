@@ -2,9 +2,9 @@
 
 namespace MoneyMe.Modules.Investments.Api.Controllers;
 
-[Route("investments-module")]
-internal class HomeController : ControllerBase
+[Route(BasePath)]
+internal class HomeController : BaseController
 {
-	[HttpGet]
-	public ActionResult<string> Get() => "Investments API";
+    [HttpGet]
+    public ActionResult<string> Get() => "Investments API";
 }

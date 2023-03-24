@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using MoneyMe.Shared.Infrastructure.Api;
 using System.Runtime.CompilerServices;
+using MoneyMe.Shared.Abstractions;
+using MoneyMe.Shared.Infrastructure.Time;
 
 [assembly:InternalsVisibleTo("MoneyMe.Bootstrapper")]
 
@@ -11,6 +13,7 @@ internal static class Extensions
 {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services)
 	{
+		services.AddSingleton<IClock, UtcClock>();
 		services
 		   .AddControllers()
 		   .ConfigureApplicationPartManager(

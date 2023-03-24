@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyMe.Modules.Investments.Core\MoneyMe.Modules.Investments.Core.csproj"/>
+        <ProjectReference Include="..\MoneyMe.Modules.Investments.Core\MoneyMe.Modules.Investments.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
 </Project>

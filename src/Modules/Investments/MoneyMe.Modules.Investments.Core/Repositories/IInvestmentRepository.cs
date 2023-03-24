@@ -4,13 +4,13 @@ namespace MoneyMe.Modules.Investments.Core.Repositories;
 
 internal interface IInvestmentRepository
 {
-	Task<Investment?> GetAsync(Guid id);
+    Task<Investment?> GetAsync(Guid id);
 
-	Task<IReadOnlyList<Investment>> GetAllAsync();
+    Task<IReadOnlyList<Investment>> GetAllAsync();
 
-	Task AddAsync(Investment investment);
+    Task AddAsync(Investment investment);
 
-	Task UpdateAsync(Investment investment);
+    Task UpdateAsync(Investment investment);
 
-	Task DeleteAsync(Guid id);
+    Task DeleteAsync(Investment investment);
 }
