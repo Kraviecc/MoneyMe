@@ -1,0 +1,48 @@
+﻿### Home
+GET {{url}}{{module-investments}}
+Accept: application/json
+
+### Create investment component
+POST {{url}}{{module-investments}}/investmentcomponents
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "investmentId": "becec694-2840-485a-aab0-6f915347f9d1",
+  "type": 1
+}
+
+> {%
+    client.test("Location exists", function() {
+        client.assert(response.headers.valueOf("Location") !== undefined, "Cannot find 'location' in response");
+    });
+    
+    client.global.set("investmentComponentUrl", response.headers.valueOf("Location"));
+%}
+
+### Get created investment component
+GET {{investmentComponentUrl}}
+Accept: application/json
+
+### Get all investment components
+GET {{url}}{{module-investments}}/investmentcomponents
+Accept: application/json
+
+### Get investment component by id
+GET {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
+Accept: application/json
+
+### Update investment component
+PUT {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
+Content-Type: application/json
+
+{
+  "name": "abcd",
+  "investmentId": "becec694-2840-485a-aab0-6f915347f9d1",
+  "type": 2
+  
+}
+
+### Delete investment component
+DELETE {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
+Accept: application/json

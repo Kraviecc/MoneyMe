@@ -22,6 +22,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Investments
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Investments.Core", "src\Modules\Investments\MoneyMe.Modules.Investments.Core\MoneyMe.Modules.Investments.Core.csproj", "{4AF64B48-713D-4E96-B06F-F397680E6FDB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{9CC9BC7C-EC64-41C5-B834-CFB914C37751}"
+	ProjectSection(SolutionItems) = preProject
+		MoneyMe.rest = MoneyMe.rest
+		http-client.env.json = http-client.env.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

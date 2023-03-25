@@ -2,5 +2,5 @@
 
 internal class InvestmentDetailsDto : InvestmentDto
 {
-	public List<InvestmentComponentDto> Components { get; set; }
+	public List<InvestmentComponentDto> Components { get; set; } = new();
 }

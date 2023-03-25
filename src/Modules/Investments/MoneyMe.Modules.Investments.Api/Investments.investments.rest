@@ -1,0 +1,45 @@
+﻿### Home
+GET {{url}}{{module-investments}}
+Accept: application/json
+
+### Create investment
+POST {{url}}{{module-investments}}/investments
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "description": "description, something is here"
+}
+
+> {%
+    client.test("Location exists", function() {
+        client.assert(response.headers.valueOf("Location") !== undefined, "Cannot find 'location' in response");
+    });
+    
+    client.global.set("investmentUrl", response.headers.valueOf("Location"));
+%}
+
+### Get created investment
+GET {{investmentUrl}}
+Accept: application/json
+
+### Get all investments
+GET {{url}}{{module-investments}}/investments
+Accept: application/json
+
+### Get investment by id
+GET {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+
+### Update investment
+PUT {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "description": "another description"
+}
+
+### Delete investment
+DELETE {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json

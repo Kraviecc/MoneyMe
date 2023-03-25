@@ -1,0 +1,4 @@
+GET {{url}}
+Accept: application/json
+
+###

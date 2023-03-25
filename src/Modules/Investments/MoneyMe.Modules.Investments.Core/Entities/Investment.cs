@@ -8,5 +8,5 @@ internal class Investment
 
 	public string Description { get; set; }
 
-	public IEnumerable<InvestmentComponent> Components { get; set; }
+	public IEnumerable<InvestmentComponent> Components { get; set; } = new List<InvestmentComponent>();
 }
