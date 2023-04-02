@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{9CC9BC7C
 	ProjectSection(SolutionItems) = preProject
 		MoneyMe.rest = MoneyMe.rest
 		http-client.env.json = http-client.env.json
+		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
 Global

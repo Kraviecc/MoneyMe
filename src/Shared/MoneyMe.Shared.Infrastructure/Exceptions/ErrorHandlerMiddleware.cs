@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using MoneyMe.Shared.Abstractions.Exceptions;
 using System.Net;
 
 namespace MoneyMe.Shared.Infrastructure.Exceptions;
