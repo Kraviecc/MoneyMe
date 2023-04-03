@@ -5,6 +5,7 @@ using MoneyMe.Shared.Infrastructure.Api;
 using System.Runtime.CompilerServices;
 using MoneyMe.Shared.Abstractions;
 using MoneyMe.Shared.Infrastructure.Exceptions;
+using MoneyMe.Shared.Infrastructure.Services;
 using MoneyMe.Shared.Infrastructure.Time;
 
 [assembly:InternalsVisibleTo("MoneyMe.Bootstrapper")]
@@ -17,6 +18,7 @@ internal static class Extensions
 	{
 		services.AddErrorHandling();
 		services.AddSingleton<IClock, UtcClock>();
+		services.AddHostedService<AppInitializer>();
 		services
 		   .AddControllers()
 		   .ConfigureApplicationPartManager(
