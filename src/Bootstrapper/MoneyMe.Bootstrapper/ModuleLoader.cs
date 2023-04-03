@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using MoneyMe.Shared.Abstractions.Modules;
+using MoneyMe.Shared.Infrastructure.Modules;
 
 namespace MoneyMe.Bootstrapper;
 
 internal static class ModuleLoader
 {
-    public static IList<Assembly> LoadAssemblies()
+    public static IEnumerable<Assembly> LoadAssemblies()
     {
         var assemblies = AppDomain.CurrentDomain
             .GetAssemblies()
@@ -24,14 +25,25 @@ internal static class ModuleLoader
         return assemblies;
     }
 
-    public static IList<IModule> LoadModules(IEnumerable<Assembly> assemblies)
+    public static IList<IModule> LoadModules(
+        IConfiguration configuration,
+        IEnumerable<Assembly> assemblies)
     {
         return assemblies
             .SelectMany(p => p.GetTypes())
-            .Where(p => typeof(IModule).IsAssignableFrom(p) && !p.IsInterface)
+            .Where(p => typeof(IModule).IsAssignableFrom(p)
+                        && !p.IsInterface
+                        && IsModuleEnabled(configuration, p.Assembly))
             .OrderBy(p => p.Name)
             .Select(Activator.CreateInstance)
             .Cast<IModule>()
             .ToList();
+    }
+
+    private static bool IsModuleEnabled(IConfiguration configuration, Assembly assembly)
+    {
+        var moduleName = assembly.GetModuleName();
+        return !string.IsNullOrEmpty(moduleName)
+               && configuration.GetValue<bool>($"{moduleName}:module:enabled");
     }
 }
