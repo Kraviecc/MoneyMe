@@ -2,7 +2,7 @@
 
 namespace MoneyMe.Modules.Investments.Api.Controllers;
 
-[Route(BasePath)]
+[Route(InvestmentsModule.BasePath)]
 internal class HomeController : BaseController
 {
     [HttpGet]

@@ -33,8 +33,6 @@ internal static class Extensions
 	public static WebApplication UseInfrastructure(this WebApplication app)
 	{
 		app.UseErrorHandling();
-		app.MapControllers();
-		app.MapGet("/", () => "Hello MoneyMe!");
 
 		return app;
 	}
