@@ -7,15 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Modules\Investments\MoneyMe.Modules.Investments.Api\MoneyMe.Modules.Investments.Api.csproj" />
-      <ProjectReference Include="..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Modules\Investments\MoneyMe.Modules.Investments.Api\MoneyMe.Modules.Investments.Api.csproj"/>
+        <ProjectReference Include="..\..\Modules\Users\MoneyMe.Modules.Users.Api\MoneyMe.Modules.Users.Api.csproj"/>
+        <ProjectReference Include="..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

@@ -5,10 +5,13 @@ using MoneyMe.Shared.Infrastructure.Modules;
 var builder = WebApplication
     .CreateBuilder(args)
     .ConfigureModules();
-builder.Services.AddInfrastructure(builder.Configuration);
 
 var assemblies = ModuleLoader.LoadAssemblies();
 var modules = ModuleLoader.LoadModules(builder.Configuration, assemblies);
+builder.Services.AddInfrastructure(
+    builder.Configuration,
+    modules);
+
 foreach (var module in modules)
 {
     module.Register(builder.Services);

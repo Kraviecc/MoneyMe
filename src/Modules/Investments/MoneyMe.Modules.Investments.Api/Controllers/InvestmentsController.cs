@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MoneyMe.Modules.Investments.Core.DTO;
 using MoneyMe.Modules.Investments.Core.Services;
 
 namespace MoneyMe.Modules.Investments.Api.Controllers;
 
+[Authorize(Policy)]
 internal class InvestmentsController : BaseController
 {
+    private const string Policy = "investments";
     private readonly IInvestmentService _investmentService;
 
     public InvestmentsController(IInvestmentService investmentService)

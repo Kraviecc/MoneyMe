@@ -5,6 +5,7 @@ Accept: application/json
 ### Create investment
 POST {{url}}{{module-investments}}/investments
 Content-Type: application/json
+Authorization: Bearer _token_
 
 {
   "name": "abc",
@@ -22,18 +23,22 @@ Content-Type: application/json
 ### Get created investment
 GET {{investmentUrl}}
 Accept: application/json
+Authorization: Bearer _token_
 
 ### Get all investments
 GET {{url}}{{module-investments}}/investments
 Accept: application/json
+Authorization: Bearer _token_
 
 ### Get investment by id
 GET {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
 Accept: application/json
+Authorization: Bearer _token_
 
 ### Update investment
 PUT {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
 Content-Type: application/json
+Authorization: Bearer _token_
 
 {
   "name": "abc",
@@ -43,3 +48,4 @@ Content-Type: application/json
 ### Delete investment
 DELETE {{url}}{{module-investments}}/investments/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
 Accept: application/json
+Authorization: Bearer _token_

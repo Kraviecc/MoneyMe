@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using MoneyMe.Modules.Investments.Core;
+using MoneyMe.Modules.Users.Core;
 using MoneyMe.Shared.Abstractions.Modules;
 
-namespace MoneyMe.Modules.Investments.Api;
+namespace MoneyMe.Modules.Users.Api;
 
-internal class InvestmentsModule : IModule
+internal class UsersModule : IModule
 {
-    public const string BasePath = "investments-module";
-    public string Name => "Investments";
+    public const string BasePath = "users-module";
+    public string Name => "Users";
     public string Path => BasePath;
-    public IEnumerable<string>? Policies { get; } = new[] { "investments", "components" };
+    public IEnumerable<string> Policies { get; } = new[] { "users" };
 
     public void Register(IServiceCollection services)
     {

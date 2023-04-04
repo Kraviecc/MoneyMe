@@ -3,8 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoneyMe.Shared.Infrastructure.Api;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using MoneyMe.Shared.Abstractions;
+using MoneyMe.Shared.Abstractions.Modules;
+using MoneyMe.Shared.Infrastructure.Auth;
+using MoneyMe.Shared.Infrastructure.Contexts;
 using MoneyMe.Shared.Infrastructure.Exceptions;
 using MoneyMe.Shared.Infrastructure.Services;
 using MoneyMe.Shared.Infrastructure.Time;
@@ -15,7 +19,10 @@ namespace MoneyMe.Shared.Infrastructure;
 
 internal static class Extensions
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IEnumerable<IModule> modules)
     {
         var disabledModules = new List<string>();
         foreach (var (key, value) in configuration.AsEnumerable())
@@ -31,6 +38,10 @@ internal static class Extensions
             }
         }
 
+        services.AddSingleton<IContextFactory, ContextFactory>();
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
+        services.AddAuth(modules);
         services.AddErrorHandling();
         services.AddSingleton<IClock, UtcClock>();
         services.AddHostedService<AppInitializer>();
@@ -63,6 +74,9 @@ internal static class Extensions
     public static WebApplication UseInfrastructure(this WebApplication app)
     {
         app.UseErrorHandling();
+        app.UseAuthentication();
+        app.UseRouting();
+        app.UseAuthorization();
 
         return app;
     }
