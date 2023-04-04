@@ -29,8 +29,12 @@ internal class AppInitializer : IHostedService
         foreach (var dbContextType in dbContextTypes)
         {
             _logger.LogInformation("Applying migrations for {DbContextName}", dbContextType.FullName);
-            var dbContext = scope.ServiceProvider.GetRequiredService(dbContextType) as DbContext;
-            await dbContext!.Database.MigrateAsync(cancellationToken);
+            if (scope.ServiceProvider.GetService(dbContextType) is not DbContext dbContext)
+            {
+                continue;
+            }
+
+            await dbContext.Database.MigrateAsync(cancellationToken);
             _logger.LogInformation("Applied migrations for {DbContextName}", dbContextType.FullName);
         }
     }
