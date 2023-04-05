@@ -17,18 +17,29 @@ internal class InvestmentsController : BaseController
     }
 
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<InvestmentDetailsDto?>> Get(Guid id)
     {
         return OkOrNotFound(await _investmentService.GetAsync(id));
     }
 
     [HttpGet]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
     public async Task<ActionResult<IReadOnlyList<InvestmentDetailsDto>>> GetAllAsync()
     {
         return Ok(await _investmentService.GetAllAsync());
     }
 
     [HttpPost]
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
     public async Task<ActionResult> AddAsync(InvestmentDto dto)
     {
         await _investmentService.AddAsync(dto);
@@ -40,6 +51,10 @@ internal class InvestmentsController : BaseController
     }
 
     [HttpPut("{id:guid}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
     public async Task<ActionResult> UpdateAsync(Guid id, InvestmentDto dto)
     {
         dto.Id = id;
@@ -49,6 +64,10 @@ internal class InvestmentsController : BaseController
     }
 
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
     public async Task<ActionResult> DeleteAsync(Guid id)
     {
         await _investmentService.DeleteAsync(id);

@@ -6,5 +6,6 @@ namespace MoneyMe.Modules.Users.Api.Controllers;
 internal class HomeController : BaseController
 {
     [HttpGet]
+    [ProducesResponseType(200)]
     public ActionResult<string> Get() => "Users API";
 }

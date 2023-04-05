@@ -6,5 +6,6 @@ namespace MoneyMe.Modules.Investments.Api.Controllers;
 internal class HomeController : BaseController
 {
     [HttpGet]
+    [ProducesResponseType(200)]
     public ActionResult<string> Get() => "Investments API";
 }

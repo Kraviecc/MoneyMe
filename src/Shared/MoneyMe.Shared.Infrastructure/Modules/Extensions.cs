@@ -1,13 +1,40 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MoneyMe.Shared.Abstractions.Modules;
 
 namespace MoneyMe.Shared.Infrastructure.Modules;
 
 public static class Extensions
 {
     private const string ModulePart = "MoneyMe.Modules.";
+
+    internal static IServiceCollection AddModuleInfo(
+        this IServiceCollection services,
+        IEnumerable<IModule> modules)
+    {
+        var moduleInfoProvider = new ModuleInfoProvider();
+        var moduleInfo = modules.Select(ModuleInfo.FromModule);
+        moduleInfoProvider.Modules.AddRange(moduleInfo);
+
+        services.AddSingleton(moduleInfoProvider);
+
+        return services;
+    }
+
+    internal static void MapModuleInfo(this IEndpointRouteBuilder endpoint)
+    {
+        endpoint.MapGet("modules", context =>
+        {
+            var moduleInfoProvider = context.RequestServices.GetRequiredService<ModuleInfoProvider>();
+
+            return context.Response.WriteAsJsonAsync(moduleInfoProvider.Modules);
+        });
+    }
 
     internal static WebApplicationBuilder ConfigureModules(this WebApplicationBuilder builder)
     {

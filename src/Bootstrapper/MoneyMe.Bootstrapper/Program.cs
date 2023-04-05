@@ -31,5 +31,6 @@ logger.LogInformation(
 
 app.MapControllers();
 app.MapGet("/", () => "Hello MoneyMe!");
+app.MapModuleInfo();
 
 app.Run();
