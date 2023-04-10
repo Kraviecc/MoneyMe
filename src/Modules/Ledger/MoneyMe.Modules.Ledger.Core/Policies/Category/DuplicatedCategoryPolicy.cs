@@ -14,7 +14,7 @@ internal class DuplicatedCategoryPolicy : ICategoryModificationPolicy
 	public async Task<bool> CanUseAsync(Entities.Category category)
 	{
 		return await _categoryRepository
-		   .Get(category.Name)
+		   .GetByNameAsync(category.Name)
 		   .ConfigureAwait(false) == null;
 	}
 }

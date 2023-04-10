@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ledger", "Ledger", "{6E9B80
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Core", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Core\MoneyMe.Modules.Ledger.Core.csproj", "{B62EB78A-6677-4D61-B365-586AD85159C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Api", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Api\MoneyMe.Modules.Ledger.Api.csproj", "{6561B204-F120-4517-AB5E-30BD1379AFDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,7 @@ Global
 		{0E7B38B0-D103-44EE-A518-C4F7553B4A5B} = {731298D1-A1F0-4226-86FD-3A8044877324}
 		{6E9B80B6-FB4A-4065-A02C-45B0F0688CA7} = {7EFAE1CA-DE74-4228-9D99-CFA7C6A6A2A7}
 		{B62EB78A-6677-4D61-B365-586AD85159C6} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
+		{6561B204-F120-4517-AB5E-30BD1379AFDA} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -93,5 +96,9 @@ Global
 		{B62EB78A-6677-4D61-B365-586AD85159C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B62EB78A-6677-4D61-B365-586AD85159C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B62EB78A-6677-4D61-B365-586AD85159C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DAL\Migrations" />
+        <Folder Include="DAL\Migrations"/>
     </ItemGroup>
 
 </Project>

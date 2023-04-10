@@ -1,0 +1,53 @@
+﻿### Home
+GET {{url}}{{module-ledger}}
+Accept: application/json
+
+### Create category
+POST {{url}}{{module-ledger}}/categories
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "abc",
+  "type": 1
+}
+
+> {%
+    client.test("Location exists", function () {
+        client.assert(response.headers.valueOf("Location") !== undefined, "Cannot find 'location' in response");
+    });
+
+    client.global.set("categoryUrl", response.headers.valueOf("Location"));
+%}
+
+### Get created category
+GET {{categoryUrl}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get all categories
+GET {{url}}{{module-ledger}}/categories
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get category by id
+GET {{url}}{{module-ledger}}/categories/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Update category
+PUT {{url}}{{module-ledger}}/categories/f64133cf-bbd8-4e3f-aedf-ace8e5fec584
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "abc2",
+  "type": 0
+}
+
+### Delete category
+DELETE {{url}}{{module-ledger}}/categories/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}

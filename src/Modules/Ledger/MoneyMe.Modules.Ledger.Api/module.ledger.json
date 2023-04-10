@@ -1,0 +1,8 @@
+{
+  "ledger": {
+    "module": {
+      "name": "Ledger",
+      "enabled": true
+    }
+  }
+}

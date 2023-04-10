@@ -1,7 +1,7 @@
 ﻿using MoneyMe.Modules.Ledger.Core.DTO;
 using MoneyMe.Modules.Ledger.Core.Entities;
 using MoneyMe.Modules.Ledger.Core.Exceptions;
-using MoneyMe.Modules.Ledger.Core.Policies;
+using MoneyMe.Modules.Ledger.Core.Mappings;
 using MoneyMe.Modules.Ledger.Core.Policies.Category;
 using MoneyMe.Modules.Ledger.Core.Repositories;
 
@@ -44,21 +44,11 @@ internal class CategoryService : ICategoryService
 
 		var dto = Map<CategoryDetailsDto>(category);
 		dto.Expenses = category.Expenses
-		   .Select(
-				p => new ExpenseDto
-				{
-					Id = p.Id,
-					Name = p.Name
-				})
+		   .Select(p => p.Map<ExpenseDto>())
 		   .ToList();
 
 		dto.Incomes = category.Incomes
-		   .Select(
-				p => new IncomeDto
-				{
-					Id = p.Id,
-					Name = p.Name
-				})
+		   .Select(p => p.Map<IncomeDto>())
 		   .ToList();
 
 		return dto;

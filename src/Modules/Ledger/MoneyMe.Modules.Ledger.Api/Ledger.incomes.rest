@@ -1,0 +1,55 @@
+﻿### Home
+GET {{url}}{{module-ledger}}
+Accept: application/json
+
+### Create income
+POST {{url}}{{module-ledger}}/incomes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentComponentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "abc",
+  "value": 0.33,
+  "categoryId": "f64133cf-bbd8-4e3f-aedf-ace8e5fec584"
+}
+
+> {%
+    client.test("Location exists", function () {
+        client.assert(response.headers.valueOf("Location") !== undefined, "Cannot find 'location' in response");
+    });
+
+    client.global.set("incomeUrl", response.headers.valueOf("Location"));
+%}
+
+### Get created income
+GET {{incomeUrl}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get all incomes
+GET {{url}}{{module-ledger}}/incomes
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get income by id
+GET {{url}}{{module-ledger}}/incomes/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Update income
+PUT {{url}}{{module-ledger}}/incomes/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentComponentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "abc",
+  "value": 0.33,
+  "categoryId": "f64133cf-bbd8-4e3f-aedf-ace8e5fec584"
+}
+
+### Delete income
+DELETE {{url}}{{module-ledger}}/incomes/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}

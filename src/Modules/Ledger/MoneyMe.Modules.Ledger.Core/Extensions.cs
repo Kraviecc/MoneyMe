@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MoneyMe.Modules.Ledger.Core.DAL;
+using MoneyMe.Modules.Ledger.Core.DAL.Repositories;
 using MoneyMe.Modules.Ledger.Core.Policies.Category;
 using MoneyMe.Modules.Ledger.Core.Repositories;
 using MoneyMe.Modules.Ledger.Core.Services;
+using MoneyMe.Shared.Infrastructure.Postgres;
 using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("MoneyMe.Modules.Ledger.Api")]
@@ -14,10 +17,16 @@ internal static class Extensions
 	{
 		services.AddPostgres<LedgerDbContext>();
 
-		services.AddSingleton<ICategoryDeletionPolicy, RelatedItemsCategoryPolicy>();
-		services.AddSingleton<ICategoryModificationPolicy, DuplicatedCategoryPolicy>();
+		services.AddScoped<ICategoryDeletionPolicy, RelatedItemsCategoryPolicy>();
+		services.AddScoped<ICategoryModificationPolicy, DuplicatedCategoryPolicy>();
 		services.AddScoped<ICategoryRepository, CategoryRepository>();
 		services.AddScoped<ICategoryService, CategoryService>();
+
+		services.AddScoped<IExpenseRepository, ExpenseRepository>();
+		services.AddScoped<IExpenseService, ExpenseService>();
+
+		services.AddScoped<IIncomeRepository, IncomeRepository>();
+		services.AddScoped<IIncomeService, IncomeService>();
 
 		return services;
 	}

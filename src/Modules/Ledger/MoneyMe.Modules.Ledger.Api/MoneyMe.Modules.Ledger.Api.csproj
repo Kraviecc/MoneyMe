@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="module.ledger.json" />
+        <Content Include="module.ledger.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="module.ledger.development.json" />
+        <Content Include="module.ledger.development.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Shared\MoneyMe.Shared.Abstractions\MoneyMe.Shared.Abstractions.csproj" />
+        <ProjectReference Include="..\MoneyMe.Modules.Ledger.Core\MoneyMe.Modules.Ledger.Core.csproj" />
+    </ItemGroup>
+
+</Project>

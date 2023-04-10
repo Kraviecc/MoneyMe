@@ -1,0 +1,55 @@
+﻿### Home
+GET {{url}}{{module-ledger}}
+Accept: application/json
+
+### Create expense
+POST {{url}}{{module-ledger}}/expenses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentComponentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "expense#1",
+  "value": 0.33,
+  "categoryId": "f64133cf-bbd8-4e3f-aedf-ace8e5fec584"
+}
+
+> {%
+    client.test("Location exists", function () {
+        client.assert(response.headers.valueOf("Location") !== undefined, "Cannot find 'location' in response");
+    });
+
+    client.global.set("expenseUrl", response.headers.valueOf("Location"));
+%}
+
+### Get created expense
+GET {{expenseUrl}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get all expenses
+GET {{url}}{{module-ledger}}/expenses
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Get expense by id
+GET {{url}}{{module-ledger}}/expenses/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Update expense
+PUT {{url}}{{module-ledger}}/expenses/8cc218ee-9ac1-416f-aa15-f93ac6aaacf9
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentComponentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "name": "expense#2",
+  "value": 0.66,
+  "categoryId": "f64133cf-bbd8-4e3f-aedf-ace8e5fec584"
+}
+
+### Delete expense
+DELETE {{url}}{{module-ledger}}/expenses/2537bfe7-ee27-4f2a-9223-15885a8dd4bb
+Accept: application/json
+Authorization: Bearer {{token}}

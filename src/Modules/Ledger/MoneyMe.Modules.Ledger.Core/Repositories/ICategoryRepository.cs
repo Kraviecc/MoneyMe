@@ -14,5 +14,5 @@ internal interface ICategoryRepository
 
 	Task DeleteAsync(Category category);
 
-	Task<Category?> Get(string name);
+	Task<Category?> GetByNameAsync(string name);
 }

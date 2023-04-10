@@ -5,7 +5,7 @@ Accept: application/json
 ### Create investment component
 POST {{url}}{{module-investments}}/investmentcomponents
 Content-Type: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}
 
 {
   "name": "abc",
@@ -24,22 +24,22 @@ Authorization: Bearer _token_
 ### Get created investment component
 GET {{investmentComponentUrl}}
 Accept: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}
 
 ### Get all investment components
 GET {{url}}{{module-investments}}/investmentcomponents
 Accept: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}
 
 ### Get investment component by id
 GET {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
 Accept: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}
 
 ### Update investment component
 PUT {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
 Content-Type: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}
 
 {
   "name": "abcd",
@@ -51,4 +51,4 @@ Authorization: Bearer _token_
 ### Delete investment component
 DELETE {{url}}{{module-investments}}/investmentcomponents/6279b8ba-6079-4b22-9724-94a0ecb56f97
 Accept: application/json
-Authorization: Bearer _token_
+Authorization: Bearer {{token}}

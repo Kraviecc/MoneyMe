@@ -5,7 +5,7 @@ Accept: application/json
 ### Get account
 GET {{url}}{{module-users}}/account
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZmJiODQxMC0yMGYxLTQzMjctOWRlNi0wMGFkYjM1Njg2MzciLCJ1bmlxdWVfbmFtZSI6IjBmYmI4NDEwLTIwZjEtNDMyNy05ZGU2LTAwYWRiMzU2ODYzNyIsImp0aSI6ImM3NDAzYTdjLWE0MTMtNDczNS05NzI0LWM5M2M3YTFlMTg3YyIsImlhdCI6IjE2ODA2MTc1MDg2MzciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiaW52ZXN0bWVudHMiLCJjb21wb25lbnRzIiwidXNlcnMiXSwibmJmIjoxNjgwNjE3NTA4LCJleHAiOjE2ODA2NTM1MDgsImlzcyI6Im1vbmV5bWUifQ.4hbYwWlIdAY1o94to7TtMu8njJYCeb9762ckFYO9pCU
+Authorization: Bearer {{token}}
 
 ### Sign up
 POST {{url}}{{module-users}}/account/sign-up
@@ -16,7 +16,7 @@ Content-Type: application/json
   "password": "secret",
   "role": "user",
   "claims": {
-    "permissions": ["investments", "components", "users"]
+    "permissions": ["investments", "components", "users", "categories", "expenses", "incomes"]
   }
 }
 
