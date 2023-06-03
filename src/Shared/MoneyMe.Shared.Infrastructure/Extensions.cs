@@ -10,10 +10,12 @@ using MoneyMe.Shared.Abstractions;
 using MoneyMe.Shared.Abstractions.Modules;
 using MoneyMe.Shared.Infrastructure.Auth;
 using MoneyMe.Shared.Infrastructure.Contexts;
+using MoneyMe.Shared.Infrastructure.Events;
 using MoneyMe.Shared.Infrastructure.Exceptions;
 using MoneyMe.Shared.Infrastructure.Modules;
 using MoneyMe.Shared.Infrastructure.Services;
 using MoneyMe.Shared.Infrastructure.Time;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 [assembly:InternalsVisibleTo("MoneyMe.Bootstrapper")]
@@ -27,7 +29,8 @@ internal static class Extensions
 	public static IServiceCollection AddInfrastructure(
 		this IServiceCollection services,
 		IConfiguration configuration,
-		IList<IModule> modules)
+		IList<IModule> modules,
+		IList<Assembly> assemblies)
 	{
 		var disabledModules = new List<string>();
 
@@ -72,8 +75,10 @@ internal static class Extensions
 		services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 		services.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
 		services.AddModuleInfo(modules);
+		services.AddModuleRequests(assemblies);
 		services.AddAuth(modules);
 		services.AddErrorHandling();
+		services.AddEvents(assemblies);
 		services.AddSingleton<IClock, UtcClock>();
 		services.AddHostedService<AppInitializer>();
 		services
