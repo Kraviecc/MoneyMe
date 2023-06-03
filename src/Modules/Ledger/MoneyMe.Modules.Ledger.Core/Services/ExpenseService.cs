@@ -5,23 +5,22 @@ using MoneyMe.Modules.Ledger.Core.Exceptions;
 using MoneyMe.Modules.Ledger.Core.Mappings;
 using MoneyMe.Modules.Ledger.Core.Models;
 using MoneyMe.Modules.Ledger.Core.Repositories;
-using MoneyMe.Shared.Abstractions.Events;
-using MoneyMe.Shared.Abstractions.Modules;
+using MoneyMe.Shared.Abstractions.Messaging;
 
 namespace MoneyMe.Modules.Ledger.Core.Services;
 
 internal class ExpenseService : IExpenseService
 {
-	private readonly IModuleClient _moduleClient;
+	private readonly IMessageBroker _messageBroker;
 	private readonly IExpenseRepository _expenseRepository;
 	private readonly ICategoryRepository _categoryRepository;
 
 	public ExpenseService(
-		IModuleClient moduleClient,
+		IMessageBroker messageBroker,
 		IExpenseRepository expenseRepository,
 		ICategoryRepository categoryRepository)
 	{
-		_moduleClient = moduleClient;
+		_messageBroker = messageBroker;
 		_expenseRepository = expenseRepository;
 		_categoryRepository = categoryRepository;
 	}
@@ -42,7 +41,7 @@ internal class ExpenseService : IExpenseService
 				CategoryId = dto.CategoryId
 			});
 
-		await _moduleClient.PublishAsync(new ExpenseCreated(dto.Id));
+		await _messageBroker.PublishAsync(new ExpenseCreated(dto.Id));
 	}
 
 	private async Task ValidateCategoryAsync(Guid categoryId)
