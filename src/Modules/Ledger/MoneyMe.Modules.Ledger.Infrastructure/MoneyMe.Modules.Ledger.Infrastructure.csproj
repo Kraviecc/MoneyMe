@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\MoneyMe.Modules.Ledger.Application\MoneyMe.Modules.Ledger.Application.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-﻿namespace MoneyMe.Shared.Abstractions;
+﻿namespace MoneyMe.Shared.Abstractions.Time;
 
 public interface IClock
 {

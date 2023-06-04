@@ -19,7 +19,9 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\Shared\MoneyMe.Shared.Abstractions\MoneyMe.Shared.Abstractions.csproj" />
+        <ProjectReference Include="..\MoneyMe.Modules.Ledger.Application\MoneyMe.Modules.Ledger.Application.csproj" />
         <ProjectReference Include="..\MoneyMe.Modules.Ledger.Core\MoneyMe.Modules.Ledger.Core.csproj" />
+        <ProjectReference Include="..\MoneyMe.Modules.Ledger.Infrastructure\MoneyMe.Modules.Ledger.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

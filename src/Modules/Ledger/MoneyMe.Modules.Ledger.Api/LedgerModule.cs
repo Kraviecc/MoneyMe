@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyMe.Modules.Ledger.Application;
 using MoneyMe.Modules.Ledger.Core;
+using MoneyMe.Modules.Ledger.Domain;
+using MoneyMe.Modules.Ledger.Infrastructure;
 using MoneyMe.Shared.Abstractions.Modules;
 
 namespace MoneyMe.Modules.Ledger.Api;
@@ -22,7 +25,11 @@ internal class LedgerModule : IModule
 
 	public void Register(IServiceCollection services)
 	{
-		services.AddCore();
+		services
+		   .AddCore()
+		   .AddDomain()
+		   .AddApplication()
+		   .AddInfrastructure();
 	}
 
 	public void Use(IApplicationBuilder app) { }

@@ -7,10 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Modules\Investments\MoneyMe.Modules.Investments.Api\MoneyMe.Modules.Investments.Api.csproj"/>
-        <ProjectReference Include="..\..\Modules\Users\MoneyMe.Modules.Users.Api\MoneyMe.Modules.Users.Api.csproj"/>
-        <ProjectReference Include="..\..\Modules\Ledger\MoneyMe.Modules.Ledger.Api\MoneyMe.Modules.Ledger.Api.csproj"/>
-        <ProjectReference Include="..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj"/>
+        <ProjectReference Include="..\..\Modules\Investments\MoneyMe.Modules.Investments.Api\MoneyMe.Modules.Investments.Api.csproj" />
+        <ProjectReference Include="..\..\Modules\Ledger\MoneyMe.Modules.Ledger.Infrastructure\MoneyMe.Modules.Ledger.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Modules\Users\MoneyMe.Modules.Users.Api\MoneyMe.Modules.Users.Api.csproj" />
+        <ProjectReference Include="..\..\Modules\Ledger\MoneyMe.Modules.Ledger.Api\MoneyMe.Modules.Ledger.Api.csproj" />
+        <ProjectReference Include="..\..\Shared\MoneyMe.Shared.Infrastructure\MoneyMe.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

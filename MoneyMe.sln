@@ -41,6 +41,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Api", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Api\MoneyMe.Modules.Ledger.Api.csproj", "{6561B204-F120-4517-AB5E-30BD1379AFDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Domain", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Domain\MoneyMe.Modules.Ledger.Domain.csproj", "{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Infrastructure", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Infrastructure\MoneyMe.Modules.Ledger.Infrastructure.csproj", "{77CA4C37-1E86-4D0F-B1BE-28A46C311966}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Modules.Ledger.Application", "src\Modules\Ledger\MoneyMe.Modules.Ledger.Application\MoneyMe.Modules.Ledger.Application.csproj", "{3DEFA51B-5064-4834-9665-0BB280F27197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +68,9 @@ Global
 		{6E9B80B6-FB4A-4065-A02C-45B0F0688CA7} = {7EFAE1CA-DE74-4228-9D99-CFA7C6A6A2A7}
 		{B62EB78A-6677-4D61-B365-586AD85159C6} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
 		{6561B204-F120-4517-AB5E-30BD1379AFDA} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
+		{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
+		{77CA4C37-1E86-4D0F-B1BE-28A46C311966} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
+		{3DEFA51B-5064-4834-9665-0BB280F27197} = {6E9B80B6-FB4A-4065-A02C-45B0F0688CA7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{444511BA-F54E-4913-91B1-289A4FD3E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -100,5 +109,17 @@ Global
 		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6561B204-F120-4517-AB5E-30BD1379AFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EDB864-CEA0-4908-84D5-ACA2B22BD3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77CA4C37-1E86-4D0F-B1BE-28A46C311966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77CA4C37-1E86-4D0F-B1BE-28A46C311966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77CA4C37-1E86-4D0F-B1BE-28A46C311966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77CA4C37-1E86-4D0F-B1BE-28A46C311966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DEFA51B-5064-4834-9665-0BB280F27197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DEFA51B-5064-4834-9665-0BB280F27197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DEFA51B-5064-4834-9665-0BB280F27197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DEFA51B-5064-4834-9665-0BB280F27197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
