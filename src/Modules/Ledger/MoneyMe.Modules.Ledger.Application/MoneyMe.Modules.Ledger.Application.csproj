@@ -10,4 +10,8 @@
       <ProjectReference Include="..\MoneyMe.Modules.Ledger.Domain\MoneyMe.Modules.Ledger.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Expenses\Events\External\Handlers\" />
+    </ItemGroup>
+
 </Project>

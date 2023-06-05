@@ -6,14 +6,11 @@ var builder = WebApplication
     .CreateBuilder(args)
     .ConfigureModules();
 
-var assemblies = ModuleLoader
-   .LoadAssemblies()
-   .ToList();
+var assemblies = ModuleLoader.LoadAssemblies();
 var modules = ModuleLoader.LoadModules(builder.Configuration, assemblies);
 builder.Services.AddInfrastructure(
     builder.Configuration,
-    modules,
-    assemblies);
+    modules);
 
 foreach (var module in modules)
 {
