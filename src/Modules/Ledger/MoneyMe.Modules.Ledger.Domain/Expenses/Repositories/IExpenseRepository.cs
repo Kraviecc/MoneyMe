@@ -5,7 +5,7 @@ namespace MoneyMe.Modules.Ledger.Domain.Expenses.Repositories;
 
 public interface IExpenseRepository
 {
-	Task<Expense> GetAsync(AggregateId id);
+	Task<Expense?> GetAsync(AggregateId id);
 
 	Task AddAsync(Expense expense);
 
