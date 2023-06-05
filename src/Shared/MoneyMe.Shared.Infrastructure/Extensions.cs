@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoneyMe.Shared.Infrastructure.Api;
@@ -9,8 +10,11 @@ using Microsoft.OpenApi.Models;
 using MoneyMe.Shared.Abstractions.Modules;
 using MoneyMe.Shared.Abstractions.Time;
 using MoneyMe.Shared.Infrastructure.Auth;
+using MoneyMe.Shared.Infrastructure.Commands;
 using MoneyMe.Shared.Infrastructure.Contexts;
+using MoneyMe.Shared.Infrastructure.Events;
 using MoneyMe.Shared.Infrastructure.Exceptions;
+using MoneyMe.Shared.Infrastructure.Messaging;
 using MoneyMe.Shared.Infrastructure.Modules;
 using MoneyMe.Shared.Infrastructure.Services;
 using MoneyMe.Shared.Infrastructure.Time;
@@ -26,7 +30,8 @@ internal static class Extensions
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
         IConfiguration configuration,
-        IList<IModule> modules)
+        IList<IModule> modules,
+        IList<Assembly> assemblies)
     {
         var disabledModules = new List<string>();
 
@@ -73,6 +78,9 @@ internal static class Extensions
         services.AddModuleInfo(modules);
         services.AddAuth(modules);
         services.AddErrorHandling();
+        services.AddCommands(assemblies);
+        services.AddEvents(assemblies);
+        services.AddMessaging();
         services.AddSingleton<IClock, UtcClock>();
         services.AddHostedService<AppInitializer>();
         services

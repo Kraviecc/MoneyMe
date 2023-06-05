@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoneyMe.Modules.Ledger.Application.Expenses.Commands;
 using MoneyMe.Modules.Ledger.Core.DTO;
 using MoneyMe.Modules.Ledger.Core.Services;
+using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Contexts;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;
@@ -10,14 +12,18 @@ namespace MoneyMe.Modules.Ledger.Api.Controllers;
 internal class ExpensesController : BaseController
 {
 	private const string Policy = "expenses";
+
 	private readonly IExpenseService _expenseService;
+	private readonly ICommandDispatcher _commandDispatcher;
 	private readonly IContext _context;
 
 	public ExpensesController(
 		IExpenseService expenseService,
+		ICommandDispatcher commandDispatcher,
 		IContext context)
 	{
 		_expenseService = expenseService;
+		_commandDispatcher = commandDispatcher;
 		_context = context;
 	}
 
@@ -45,16 +51,16 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> AddAsync(ExpenseDto dto)
+	public async Task<ActionResult> AddAsync(CreateExpense command)
 	{
-		dto.UserId = _context.Identity.Id;
-		await _expenseService.AddAsync(dto);
+		var userCommand = command with { UserId = _context.Identity.Id };
+		await _commandDispatcher.SendAsync(userCommand);
 
 		return CreatedAtAction(
 			nameof(Get),
 			new
 			{
-				id = dto.Id
+				id = userCommand.Id
 			},
 			null);
 	}

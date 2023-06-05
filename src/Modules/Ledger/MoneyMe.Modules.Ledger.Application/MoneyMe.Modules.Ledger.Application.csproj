@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <Folder Include="Expenses\Events\External\Handlers\" />
+      <Folder Include="Expenses\Exceptions\" />
     </ItemGroup>
 
 </Project>
