@@ -14,6 +14,7 @@ using MoneyMe.Shared.Infrastructure.Commands;
 using MoneyMe.Shared.Infrastructure.Contexts;
 using MoneyMe.Shared.Infrastructure.Events;
 using MoneyMe.Shared.Infrastructure.Exceptions;
+using MoneyMe.Shared.Infrastructure.Kernel;
 using MoneyMe.Shared.Infrastructure.Messaging;
 using MoneyMe.Shared.Infrastructure.Modules;
 using MoneyMe.Shared.Infrastructure.Queries;
@@ -81,6 +82,7 @@ internal static class Extensions
 		services.AddErrorHandling();
 		services.AddCommands(assemblies);
 		services.AddQueries(assemblies);
+		services.AddDomainEvents(assemblies);
 		services.AddEvents(assemblies);
 		services.AddMessaging();
 		services.AddSingleton<IClock, UtcClock>();

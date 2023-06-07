@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoneyMe.Modules.Ledger.Application.Expenses.Commands;
+using MoneyMe.Modules.Ledger.Application.Expenses.Queries;
 using MoneyMe.Modules.Ledger.Core.DTO;
 using MoneyMe.Modules.Ledger.Core.Services;
 using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Contexts;
+using MoneyMe.Shared.Abstractions.Queries;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;
 
@@ -15,15 +17,18 @@ internal class ExpensesController : BaseController
 
 	private readonly IExpenseService _expenseService;
 	private readonly ICommandDispatcher _commandDispatcher;
+	private readonly IQueryDispatcher _queryDispatcher;
 	private readonly IContext _context;
 
 	public ExpensesController(
 		IExpenseService expenseService,
 		ICommandDispatcher commandDispatcher,
+		IQueryDispatcher queryDispatcher,
 		IContext context)
 	{
 		_expenseService = expenseService;
 		_commandDispatcher = commandDispatcher;
+		_queryDispatcher = queryDispatcher;
 		_context = context;
 	}
 
@@ -32,9 +37,9 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
 	[ProducesResponseType(404)]
-	public async Task<ActionResult<ExpenseDetailsDto?>> Get(Guid id)
+	public async Task<ActionResult<Application.Expenses.DTO.ExpenseDto>> Get(Guid id)
 	{
-		return OkOrNotFound(await _expenseService.GetAsync(id));
+		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetExpense(id)));
 	}
 
 	[HttpGet]
