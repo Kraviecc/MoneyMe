@@ -1,21 +1,25 @@
-﻿using MoneyMe.Modules.Ledger.Domain.Expenses.Entities;
+﻿using MoneyMe.Modules.Ledger.Application.Expenses.Services;
+using MoneyMe.Modules.Ledger.Domain.Expenses.Entities;
 using MoneyMe.Modules.Ledger.Domain.Expenses.Repositories;
 using MoneyMe.Shared.Abstractions.Commands;
-using MoneyMe.Shared.Abstractions.Kernel;
+using MoneyMe.Shared.Abstractions.Messaging;
 
 namespace MoneyMe.Modules.Ledger.Application.Expenses.Commands.Handlers;
 
 public sealed class CreateExpenseHandler : ICommandHandler<CreateExpense>
 {
     private readonly IExpenseRepository _expenseRepository;
-    private readonly IDomainEventDispatcher _domainEventDispatcher;
+    private readonly IEventMapper _eventMapper;
+    private readonly IMessageBroker _messageBroker;
 
     public CreateExpenseHandler(
         IExpenseRepository expenseRepository,
-        IDomainEventDispatcher domainEventDispatcher)
+        IEventMapper eventMapper,
+        IMessageBroker messageBroker)
     {
         _expenseRepository = expenseRepository;
-        _domainEventDispatcher = domainEventDispatcher;
+        _eventMapper = eventMapper;
+        _messageBroker = messageBroker;
     }
 
     public async Task HandleAsync(CreateExpense command)
@@ -28,7 +32,9 @@ public sealed class CreateExpenseHandler : ICommandHandler<CreateExpense>
             command.Name,
             command.Value);
 
+        var events = _eventMapper.MapAll(expense.Events);
+
         await _expenseRepository.AddAsync(expense);
-        await _domainEventDispatcher.DispatchAsync(expense.Events.ToArray());
+        await _messageBroker.PublishAsync(events.ToArray());
     }
 }
