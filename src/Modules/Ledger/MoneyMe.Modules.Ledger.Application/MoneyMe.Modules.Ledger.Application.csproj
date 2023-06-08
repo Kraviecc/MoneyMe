@@ -11,9 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Categories\Commands\" />
       <Folder Include="Categories\Events\" />
-      <Folder Include="Categories\Exceptions\" />
       <Folder Include="LedgerEntries\Events\External\Handlers\" />
     </ItemGroup>
 

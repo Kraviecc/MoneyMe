@@ -1,6 +1,7 @@
-﻿using MoneyMe.Modules.Ledger.Core.Repositories;
+﻿using MoneyMe.Modules.Ledger.Domain.Categories.Entities;
+using MoneyMe.Modules.Ledger.Domain.Categories.Repositories;
 
-namespace MoneyMe.Modules.Ledger.Core.Policies.Category;
+namespace MoneyMe.Modules.Ledger.Domain.Categories.Policies;
 
 internal class DuplicatedCategoryPolicy : ICategoryModificationPolicy
 {
@@ -11,7 +12,7 @@ internal class DuplicatedCategoryPolicy : ICategoryModificationPolicy
 		_categoryRepository = categoryRepository;
 	}
 
-	public async Task<bool> CanUseAsync(Entities.Category category)
+	public async Task<bool> CanUseAsync(Category category)
 	{
 		return await _categoryRepository
 		   .GetByNameAsync(category.Name)

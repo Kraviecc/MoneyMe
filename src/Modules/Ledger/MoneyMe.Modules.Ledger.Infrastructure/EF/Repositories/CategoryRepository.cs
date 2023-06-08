@@ -29,6 +29,12 @@ internal sealed class CategoryRepository : ICategoryRepository
 		   .ToArrayAsync();
 	}
 
+	public async Task<bool> IsAnyRelatedItem(CategoryId id)
+	{
+		return await _context.LedgerEntries
+		   .AnyAsync(p => p.CategoryId.Equals(id));
+	}
+
 	public async Task<Category?> GetByNameAsync(string name)
 	{
 		return await _context.Categories

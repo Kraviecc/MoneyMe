@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoneyMe.Modules.Ledger.Application.Categories.Commands;
 using MoneyMe.Modules.Ledger.Application.Categories.DTO;
 using MoneyMe.Modules.Ledger.Application.Categories.Queries;
-using MoneyMe.Modules.Ledger.Application.LedgerEntries.Queries;
-using MoneyMe.Modules.Ledger.Core.DTO;
-using MoneyMe.Modules.Ledger.Core.Services;
 using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Queries;
 
@@ -47,28 +45,27 @@ internal class CategoriesController : BaseController
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> AddAsync(CategoryDto dto)
+	public async Task<ActionResult> AddAsync(CreateCategory command)
 	{
-		await _categoryService.AddAsync(dto);
+		await _commandDispatcher.SendAsync(command);
 
 		return CreatedAtAction(
 			nameof(Get),
 			new
 			{
-				id = dto.Id
+				id = command.Id
 			},
 			null);
 	}
 
-	[HttpPut("{id:guid}")]
+	[HttpPut]
 	[ProducesResponseType(204)]
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> UpdateAsync(Guid id, CategoryDto dto)
+	public async Task<ActionResult> UpdateAsync(UpdateCategory command)
 	{
-		dto.Id = id;
-		await _categoryService.UpdateAsync(dto);
+		await _commandDispatcher.SendAsync(command);
 
 		return NoContent();
 	}
@@ -80,7 +77,7 @@ internal class CategoriesController : BaseController
 	[ProducesResponseType(403)]
 	public async Task<ActionResult> DeleteAsync(Guid id)
 	{
-		await _categoryService.DeleteAsync(id);
+		await _commandDispatcher.SendAsync(new DeleteCategory(id));
 
 		return NoContent();
 	}

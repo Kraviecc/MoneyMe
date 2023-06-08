@@ -10,6 +10,8 @@ public interface ICategoryRepository
 
 	Task<IReadOnlyList<Category>> GetAllByTypeAsync(CategoryType categoryType);
 
+	Task<bool> IsAnyRelatedItem(CategoryId id);
+
 	Task<Category?> GetByNameAsync(string name);
 
 	Task AddAsync(Category category);
