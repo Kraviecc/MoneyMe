@@ -7,22 +7,22 @@ using MoneyMe.Shared.Abstractions.Queries;
 
 namespace MoneyMe.Modules.Ledger.Infrastructure.EF.Queries.Handlers;
 
-internal sealed class GetExpenseHandler : IQueryHandler<GetExpense, LedgerEntryDto?>
+internal sealed class GetAllExpensesForUserHandler : IQueryHandler<GetAllExpensesForUser, IEnumerable<LedgerEntryDto>>
 {
 	private readonly LedgerDbContext _context;
 
-	public GetExpenseHandler(LedgerDbContext context)
+	public GetAllExpensesForUserHandler(LedgerDbContext context)
 	{
 		_context = context;
 	}
 
-	public async Task<LedgerEntryDto?> HandleAsync(GetExpense query)
+	public async Task<IEnumerable<LedgerEntryDto>> HandleAsync(GetAllExpensesForUser query)
 	{
 		return await _context.LedgerEntries
 		   .AsNoTracking()
 		   .OfType<Expense>()
-		   .Where(p => p.Id.Equals(query.Id))
+		   .Where(p => p.UserId.Equals(query.UserId))
 		   .Select(p => p.AsDto())
-		   .SingleOrDefaultAsync();
+		   .ToArrayAsync();
 	}
 }

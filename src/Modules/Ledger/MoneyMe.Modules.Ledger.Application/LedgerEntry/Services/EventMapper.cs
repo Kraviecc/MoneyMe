@@ -7,15 +7,11 @@ namespace MoneyMe.Modules.Ledger.Application.LedgerEntry.Services;
 
 public class EventMapper : IEventMapper
 {
-    public IMessage Map(IDomainEvent @event) =>
-        @event switch
-        {
-            ExpenseAdded expenseAdded => new ExpenseCreated(expenseAdded.Expense.Id),
-            LedgerEntryCategoryChanged expenseCategoryChanged => throw new NotImplementedException(),
-            ExpenseValueChanged expenseValueChanged => throw new NotImplementedException(),
-            _ => throw new ArgumentOutOfRangeException(nameof(@event))
-        };
+	public IMessage Map(IDomainEvent @event) => @event switch
+	{
+		ExpenseAdded expenseAdded => new LedgerEntryCreated(expenseAdded.Expense.Id),
+		IncomeAdded incomeAdded => new LedgerEntryCreated(incomeAdded.Income.Id)
+	};
 
-    public IEnumerable<IMessage> MapAll(IEnumerable<IDomainEvent> events) =>
-        events.Select(Map);
+	public IEnumerable<IMessage> MapAll(IEnumerable<IDomainEvent> events) => events.Select(Map);
 }

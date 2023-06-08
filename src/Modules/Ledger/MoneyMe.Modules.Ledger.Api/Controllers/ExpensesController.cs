@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoneyMe.Modules.Ledger.Application.LedgerEntry.Commands;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
 using MoneyMe.Modules.Ledger.Application.LedgerEntry.Queries;
-using MoneyMe.Modules.Ledger.Core.DTO;
-using MoneyMe.Modules.Ledger.Core.Services;
 using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Contexts;
 using MoneyMe.Shared.Abstractions.Queries;
@@ -15,18 +14,15 @@ internal class ExpensesController : BaseController
 {
 	private const string Policy = "expenses";
 
-	private readonly IExpenseService _expenseService;
 	private readonly ICommandDispatcher _commandDispatcher;
 	private readonly IQueryDispatcher _queryDispatcher;
 	private readonly IContext _context;
 
 	public ExpensesController(
-		IExpenseService expenseService,
 		ICommandDispatcher commandDispatcher,
 		IQueryDispatcher queryDispatcher,
 		IContext context)
 	{
-		_expenseService = expenseService;
 		_commandDispatcher = commandDispatcher;
 		_queryDispatcher = queryDispatcher;
 		_context = context;
@@ -37,7 +33,7 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
 	[ProducesResponseType(404)]
-	public async Task<ActionResult<Application.LedgerEntry.DTO.ExpenseDto>> Get(Guid id)
+	public async Task<ActionResult<LedgerEntryDto?>> Get(Guid id)
 	{
 		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetExpense(id)));
 	}
@@ -46,9 +42,9 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(200)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult<IReadOnlyList<ExpenseDetailsDto>>> GetAllAsync()
+	public async Task<ActionResult<IReadOnlyList<LedgerEntryDto>>> GetAllAsync()
 	{
-		return Ok(await _expenseService.GetAllAsync());
+		return Ok(await _queryDispatcher.QueryAsync(new GetAllExpensesForUser(_context.Identity.Id)));
 	}
 
 	[HttpPost]
@@ -58,7 +54,11 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(403)]
 	public async Task<ActionResult> AddAsync(CreateExpense command)
 	{
-		var userCommand = command with { UserId = _context.Identity.Id };
+		var userCommand = command with
+		{
+			UserId = _context.Identity.Id
+		};
+
 		await _commandDispatcher.SendAsync(userCommand);
 
 		return CreatedAtAction(
@@ -70,16 +70,14 @@ internal class ExpensesController : BaseController
 			null);
 	}
 
-	[HttpPut("{id:guid}")]
+	[HttpPut]
 	[ProducesResponseType(204)]
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> UpdateAsync(Guid id, ExpenseDto dto)
+	public async Task<ActionResult> UpdateAsync(UpdateExpense command)
 	{
-		dto.Id = id;
-		dto.UserId = _context.Identity.Id;
-		await _expenseService.UpdateAsync(dto);
+		await _commandDispatcher.SendAsync(command);
 
 		return NoContent();
 	}
@@ -91,7 +89,7 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(403)]
 	public async Task<ActionResult> DeleteAsync(Guid id)
 	{
-		await _expenseService.DeleteAsync(id);
+		await _commandDispatcher.SendAsync(new DeleteExpense(id));
 
 		return NoContent();
 	}

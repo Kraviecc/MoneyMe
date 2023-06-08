@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MoneyMe.Modules.Ledger.Core.DTO;
-using MoneyMe.Modules.Ledger.Core.Services;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.Commands;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.Queries;
+using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Contexts;
+using MoneyMe.Shared.Abstractions.Queries;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;
 
@@ -10,14 +13,18 @@ namespace MoneyMe.Modules.Ledger.Api.Controllers;
 internal class IncomesController : BaseController
 {
 	private const string Policy = "incomes";
-	private readonly IIncomeService _incomeService;
+
+	private readonly ICommandDispatcher _commandDispatcher;
+	private readonly IQueryDispatcher _queryDispatcher;
 	private readonly IContext _context;
 
 	public IncomesController(
-		IIncomeService incomeService,
+		ICommandDispatcher commandDispatcher,
+		IQueryDispatcher queryDispatcher,
 		IContext context)
 	{
-		_incomeService = incomeService;
+		_commandDispatcher = commandDispatcher;
+		_queryDispatcher = queryDispatcher;
 		_context = context;
 	}
 
@@ -26,18 +33,18 @@ internal class IncomesController : BaseController
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
 	[ProducesResponseType(404)]
-	public async Task<ActionResult<IncomeDetailsDto?>> Get(Guid id)
+	public async Task<ActionResult<LedgerEntryDto?>> Get(Guid id)
 	{
-		return OkOrNotFound(await _incomeService.GetAsync(id));
+		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetIncome(id)));
 	}
 
 	[HttpGet]
 	[ProducesResponseType(200)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult<IReadOnlyList<IncomeDetailsDto>>> GetAllAsync()
+	public async Task<ActionResult<IReadOnlyList<LedgerEntryDto>>> GetAllAsync()
 	{
-		return Ok(await _incomeService.GetAllAsync());
+		return Ok(await _queryDispatcher.QueryAsync(new GetAllIncomesForUser(_context.Identity.Id)));
 	}
 
 	[HttpPost]
@@ -45,30 +52,32 @@ internal class IncomesController : BaseController
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> AddAsync(IncomeDto dto)
+	public async Task<ActionResult> AddAsync(CreateIncome command)
 	{
-		dto.UserId = _context.Identity.Id;
-		await _incomeService.AddAsync(dto);
+		var userCommand = command with
+		{
+			UserId = _context.Identity.Id
+		};
+
+		await _commandDispatcher.SendAsync(userCommand);
 
 		return CreatedAtAction(
 			nameof(Get),
 			new
 			{
-				id = dto.Id
+				id = userCommand.Id
 			},
 			null);
 	}
 
-	[HttpPut("{id:guid}")]
+	[HttpPut]
 	[ProducesResponseType(204)]
 	[ProducesResponseType(400)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult> UpdateAsync(Guid id, IncomeDto dto)
+	public async Task<ActionResult> UpdateAsync(UpdateIncome command)
 	{
-		dto.Id = id;
-		dto.UserId = _context.Identity.Id;
-		await _incomeService.UpdateAsync(dto);
+		await _commandDispatcher.SendAsync(command);
 
 		return NoContent();
 	}
@@ -80,7 +89,7 @@ internal class IncomesController : BaseController
 	[ProducesResponseType(403)]
 	public async Task<ActionResult> DeleteAsync(Guid id)
 	{
-		await _incomeService.DeleteAsync(id);
+		await _commandDispatcher.SendAsync(new DeleteIncome(id));
 
 		return NoContent();
 	}

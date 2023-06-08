@@ -1,6 +1,6 @@
 ﻿namespace MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
 
-public class ExpenseDto
+public class LedgerEntryDto
 {
 	public Guid Id { get; set; }
 
@@ -13,4 +13,6 @@ public class ExpenseDto
 	public string Name { get; set; }
 
 	public decimal? Value { get; set; }
+
+	public DateTime Date { get; set; }
 }

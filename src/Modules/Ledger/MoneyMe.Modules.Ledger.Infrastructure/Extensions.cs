@@ -12,6 +12,7 @@ public static class Extensions
 	{
 		return services
 		   .AddPostgres<LedgerDbContext>()
-		   .AddScoped<IExpenseRepository, ExpenseRepository>();
+		   .AddScoped<IExpenseRepository, ExpenseRepository>()
+		   .AddScoped<IIncomeRepository, IncomeRepository>();
 	}
 }

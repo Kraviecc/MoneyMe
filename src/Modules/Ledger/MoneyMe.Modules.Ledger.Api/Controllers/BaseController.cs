@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
 using MoneyMe.Shared.Infrastructure.Api;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;
@@ -8,7 +9,7 @@ namespace MoneyMe.Modules.Ledger.Api.Controllers;
 [Route(LedgerModule.BasePath + "/[controller]")]
 internal class BaseController : ControllerBase
 {
-	protected ActionResult<T> OkOrNotFound<T>(T model)
+	protected ActionResult<T?> OkOrNotFound<T>(T model)
 	{
 		if (model is null)
 		{

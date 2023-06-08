@@ -52,9 +52,25 @@ public abstract class LedgerEntry : AggregateRoot
 		IncrementVersion();
 	}
 
+	public void ChangeInvestmentComponent(InvestmentComponentId investmentComponentId)
+	{
+		if (investmentComponentId.IsEmpty())
+		{
+			throw new MissingInvestmentComponentException(Id);
+		}
+
+		InvestmentComponentId = investmentComponentId;
+		AddEvent(new LedgerEntryMovedToAnotherInvestmentComponent(this, investmentComponentId));
+	}
+
 	public void ChangeCategory(CategoryId categoryId)
 	{
 		CategoryId = categoryId;
 		AddEvent(new LedgerEntryCategoryChanged(this, categoryId));
+	}
+
+	public void ChangeDate(DateTime date)
+	{
+		Date = date;
 	}
 }
