@@ -37,6 +37,7 @@ internal class InvestmentComponentService : IInvestmentComponentService
 			{
 				Id = dto.Id,
 				Name = dto.Name,
+				Description = dto.Description,
 				InvestmentId = dto.InvestmentId
 			});
 	}

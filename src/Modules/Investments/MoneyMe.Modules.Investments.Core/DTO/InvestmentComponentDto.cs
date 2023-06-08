@@ -14,6 +14,8 @@ internal class InvestmentComponentDto
 	[StringLength(100, MinimumLength = 3)]
 	public string Name { get; set; }
 
+	public string Description { get; set; } = string.Empty;
+
 	public InvestmentComponentType Type { get; set; }
 
 	public Investment? Investment { get; set; }

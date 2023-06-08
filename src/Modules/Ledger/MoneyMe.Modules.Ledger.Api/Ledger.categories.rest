@@ -8,9 +8,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "investmentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "investmentId": "a82e1993-b458-44aa-8967-069e5b0380f4",
   "name": "abc",
-  "type": 1
+  "type": "Expense"
 }
 
 > {%

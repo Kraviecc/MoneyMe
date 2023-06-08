@@ -8,10 +8,11 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "investmentComponentId": "df90ea59-582e-494d-b8ff-b94577a76bdf",
+  "investmentComponentId": "392ef670-1372-41cd-ba2c-52b12b8cdf3e",
   "name": "expense#1",
   "value": 0.33,
-  "categoryId": "f64133cf-bbd8-4e3f-aedf-ace8e5fec584"
+  "date": "2012-04-23T18:25:43.511Z",
+  "categoryId": "52415b91-482a-4c64-880d-04589d764981"
 }
 
 > {%
