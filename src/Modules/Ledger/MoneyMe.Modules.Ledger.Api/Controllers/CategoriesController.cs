@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoneyMe.Modules.Ledger.Application.Categories.DTO;
+using MoneyMe.Modules.Ledger.Application.Categories.Queries;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.Queries;
 using MoneyMe.Modules.Ledger.Core.DTO;
 using MoneyMe.Modules.Ledger.Core.Services;
+using MoneyMe.Shared.Abstractions.Commands;
+using MoneyMe.Shared.Abstractions.Queries;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;
 
@@ -9,11 +14,13 @@ namespace MoneyMe.Modules.Ledger.Api.Controllers;
 internal class CategoriesController : BaseController
 {
 	private const string Policy = "categories";
-	private readonly ICategoryService _categoryService;
+	private readonly ICommandDispatcher _commandDispatcher;
+	private readonly IQueryDispatcher _queryDispatcher;
 
-	public CategoriesController(ICategoryService categoryService)
+	public CategoriesController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
 	{
-		_categoryService = categoryService;
+		_commandDispatcher = commandDispatcher;
+		_queryDispatcher = queryDispatcher;
 	}
 
 	[HttpGet("{id:guid}")]
@@ -21,18 +28,18 @@ internal class CategoriesController : BaseController
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
 	[ProducesResponseType(404)]
-	public async Task<ActionResult<CategoryDetailsDto?>> Get(Guid id)
+	public async Task<ActionResult<CategoryDto?>> Get(Guid id)
 	{
-		return OkOrNotFound(await _categoryService.GetAsync(id));
+		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetCategory(id)));
 	}
 
-	[HttpGet]
+	[HttpGet("{type:required}")]
 	[ProducesResponseType(200)]
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
-	public async Task<ActionResult<IReadOnlyList<CategoryDetailsDto>>> GetAllAsync()
+	public async Task<ActionResult<IReadOnlyList<CategoryDto>?>> GetAllByTypeAsync(string type)
 	{
-		return Ok(await _categoryService.GetAllAsync());
+		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetCategoriesByType(type)));
 	}
 
 	[HttpPost]

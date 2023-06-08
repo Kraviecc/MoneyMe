@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
 using MoneyMe.Shared.Infrastructure.Api;
 
 namespace MoneyMe.Modules.Ledger.Api.Controllers;

@@ -1,4 +1,4 @@
-﻿using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
+﻿using MoneyMe.Modules.Ledger.Application.LedgerEntries.DTO;
 using MoneyMe.Modules.Ledger.Domain.LedgerEntries.Entities;
 
 namespace MoneyMe.Modules.Ledger.Infrastructure.EF.Mappings;

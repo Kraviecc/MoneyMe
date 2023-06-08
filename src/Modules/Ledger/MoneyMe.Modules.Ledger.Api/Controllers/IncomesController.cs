@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.Commands;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.Queries;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.Commands;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.DTO;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.Queries;
 using MoneyMe.Shared.Abstractions.Commands;
 using MoneyMe.Shared.Abstractions.Contexts;
 using MoneyMe.Shared.Abstractions.Queries;

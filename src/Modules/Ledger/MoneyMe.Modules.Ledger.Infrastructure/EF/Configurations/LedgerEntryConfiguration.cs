@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.Types;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.Types;
 using MoneyMe.Modules.Ledger.Domain.LedgerEntries.Entities;
 using MoneyMe.Modules.Ledger.Domain.Types;
 using MoneyMe.Shared.Abstractions.Kernel.Types;

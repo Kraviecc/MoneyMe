@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.DTO;
-using MoneyMe.Modules.Ledger.Application.LedgerEntry.Queries;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.DTO;
+using MoneyMe.Modules.Ledger.Application.LedgerEntries.Queries;
 using MoneyMe.Modules.Ledger.Domain.LedgerEntries.Entities;
 using MoneyMe.Modules.Ledger.Infrastructure.EF.Mappings;
 using MoneyMe.Shared.Abstractions.Queries;

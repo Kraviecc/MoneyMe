@@ -11,7 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Categories\" />
       <Folder Include="LedgerEntries\" />
     </ItemGroup>
 

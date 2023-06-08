@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MoneyMe.Modules.Ledger.Domain.Categories.Repositories;
 using MoneyMe.Modules.Ledger.Domain.LedgerEntries.Repositories;
 using MoneyMe.Modules.Ledger.Infrastructure.EF;
 using MoneyMe.Modules.Ledger.Infrastructure.EF.Repositories;
@@ -13,6 +14,7 @@ public static class Extensions
 		return services
 		   .AddPostgres<LedgerDbContext>()
 		   .AddScoped<IExpenseRepository, ExpenseRepository>()
-		   .AddScoped<IIncomeRepository, IncomeRepository>();
+		   .AddScoped<IIncomeRepository, IncomeRepository>()
+		   .AddScoped<ICategoryRepository, CategoryRepository>();
 	}
 }
