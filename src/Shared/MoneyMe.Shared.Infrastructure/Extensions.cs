@@ -78,6 +78,7 @@ internal static class Extensions
 		services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 		services.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
 		services.AddModuleInfo(modules);
+		services.AddModuleRequests(assemblies);
 		services.AddAuth(modules);
 		services.AddErrorHandling();
 		services.AddCommands(assemblies);

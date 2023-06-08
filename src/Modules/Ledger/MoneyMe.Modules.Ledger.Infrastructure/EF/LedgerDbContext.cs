@@ -4,7 +4,7 @@ using MoneyMe.Modules.Ledger.Domain.LedgerEntries.Entities;
 
 namespace MoneyMe.Modules.Ledger.Infrastructure.EF;
 
-internal sealed class LedgerDbContext : DbContext
+internal class LedgerDbContext : DbContext
 {
 	public DbSet<LedgerEntry> LedgerEntries { get; set; }
 
