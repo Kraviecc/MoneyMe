@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MoneyMe.Modules.Ledger.Application.Expenses.Commands;
-using MoneyMe.Modules.Ledger.Application.Expenses.Queries;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.Commands;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.Queries;
 using MoneyMe.Modules.Ledger.Core.DTO;
 using MoneyMe.Modules.Ledger.Core.Services;
 using MoneyMe.Shared.Abstractions.Commands;
@@ -37,7 +37,7 @@ internal class ExpensesController : BaseController
 	[ProducesResponseType(401)]
 	[ProducesResponseType(403)]
 	[ProducesResponseType(404)]
-	public async Task<ActionResult<Application.Expenses.DTO.ExpenseDto>> Get(Guid id)
+	public async Task<ActionResult<Application.LedgerEntry.DTO.ExpenseDto>> Get(Guid id)
 	{
 		return OkOrNotFound(await _queryDispatcher.QueryAsync(new GetExpense(id)));
 	}

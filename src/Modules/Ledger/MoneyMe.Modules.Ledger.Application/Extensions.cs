@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MoneyMe.Modules.Ledger.Application.Expenses.Services;
+using MoneyMe.Modules.Ledger.Application.LedgerEntry.Services;
 
 namespace MoneyMe.Modules.Ledger.Application;
 

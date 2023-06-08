@@ -5,32 +5,32 @@ using MoneyMe.Shared.Abstractions.Kernel.Types;
 
 namespace MoneyMe.Modules.Ledger.Infrastructure.EF.Repositories;
 
-internal sealed class ExpenseRepository : IExpenseRepository
+internal sealed class IncomeRepository : IIncomeRepository
 {
 	private readonly LedgerDbContext _context;
 
-	public ExpenseRepository(LedgerDbContext context)
+	public IncomeRepository(LedgerDbContext context)
 	{
 		_context = context;
 	}
 
-	public async Task<Expense?> GetAsync(AggregateId id)
+	public async Task<Income?> GetAsync(AggregateId id)
 	{
 		return await _context.LedgerEntries
-		   .OfType<Expense>()
+		   .OfType<Income>()
 		   .Where(p => p.Id.Equals(id))
 		   .SingleOrDefaultAsync();
 	}
 
-	public async Task AddAsync(Expense expense)
+	public async Task AddAsync(Income income)
 	{
-		await _context.LedgerEntries.AddAsync(expense);
+		await _context.LedgerEntries.AddAsync(income);
 		await _context.SaveChangesAsync();
 	}
 
-	public async Task UpdateAsync(Expense expense)
+	public async Task UpdateAsync(Income income)
 	{
-		_context.Update(expense);
+		_context.Update(income);
 		await _context.SaveChangesAsync();
 	}
 

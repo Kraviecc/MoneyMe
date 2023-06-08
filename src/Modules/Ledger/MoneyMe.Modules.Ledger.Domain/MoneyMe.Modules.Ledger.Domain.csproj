@@ -12,7 +12,7 @@
 
     <ItemGroup>
       <Folder Include="Categories\" />
-      <Folder Include="Incomes\" />
+      <Folder Include="LedgerEntries\" />
     </ItemGroup>
 
 </Project>
