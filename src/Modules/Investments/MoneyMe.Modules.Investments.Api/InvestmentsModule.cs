@@ -7,17 +7,23 @@ namespace MoneyMe.Modules.Investments.Api;
 
 internal class InvestmentsModule : IModule
 {
-    public const string BasePath = "investments-module";
-    public string Name => "Investments";
-    public string Path => BasePath;
-    public IEnumerable<string>? Policies { get; } = new[] { "investments", "components" };
+	public const string BasePath = "investments-module";
 
-    public void Register(IServiceCollection services)
-    {
-        services.AddCore();
-    }
+	public string Name => "Investments";
 
-    public void Use(IApplicationBuilder app)
-    {
-    }
+	public string Path => BasePath;
+
+	public IEnumerable<string>? Policies { get; } = new[]
+	{
+		"investments",
+		"components",
+		"contributors"
+	};
+
+	public void Register(IServiceCollection services)
+	{
+		services.AddCore();
+	}
+
+	public void Use(IApplicationBuilder app) { }
 }

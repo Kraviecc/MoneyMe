@@ -1,0 +1,24 @@
+﻿### Home
+GET {{url}}{{module-investments}}
+Accept: application/json
+
+### Add investment contributor
+POST {{url}}{{module-investments}}/investmentcontributors
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "investmentComponentId": "a82e1993-b458-44aa-8967-069e5b0380f4",
+  "investmentContributorId": "a82e1993-b458-44aa-8967-069e5b0380f4",
+  "role": 1
+}
+
+### Get all contributors for investment component
+GET {{url}}{{module-investments}}/investmentcontributors/aaaa
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Delete investment contributor
+DELETE {{url}}{{module-investments}}/investmentcontributors/aaa/bbb
+Accept: application/json
+Authorization: Bearer {{token}}

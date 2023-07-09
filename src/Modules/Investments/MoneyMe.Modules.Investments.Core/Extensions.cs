@@ -25,6 +25,9 @@ internal static class Extensions
 		services.AddScoped<IInvestmentComponentRepository, InvestmentComponentRepository>();
 		services.AddScoped<IInvestmentComponentService, InvestmentComponentService>();
 
+		services.AddScoped<IInvestmentContributorRepository, InvestmentContributorRepository>();
+		services.AddScoped<IInvestmentContributorService, InvestmentContributorService>();
+
 		return services;
 	}
 }

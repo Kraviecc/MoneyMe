@@ -10,6 +10,8 @@ internal class InvestmentsDbContext : DbContext
 	public DbSet<Investment> Investments { get; set; }
 
 	public DbSet<InvestmentComponent> InvestmentComponents { get; set; }
+	
+	public DbSet<InvestmentContributor> InvestmentContributors { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
