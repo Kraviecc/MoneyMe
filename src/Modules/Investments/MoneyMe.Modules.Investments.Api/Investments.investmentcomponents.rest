@@ -9,7 +9,7 @@ Authorization: Bearer {{token}}
 
 {
   "name": "abc",
-  "investmentId": "a82e1993-b458-44aa-8967-069e5b0380f4",
+  "investmentId": "a603162a-7741-43d2-8913-1fd70447224f",
   "description": "test 233",
   "type": 1
 }

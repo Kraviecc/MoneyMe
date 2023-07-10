@@ -8,7 +8,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "investmentComponentId": "a82e1993-b458-44aa-8967-069e5b0380f4",
+  "investmentComponentId": "b3d593f3-384d-4e12-a1a9-5c4692ea4c36",
   "investmentContributorId": "a82e1993-b458-44aa-8967-069e5b0380f4",
   "role": 1
 }
@@ -19,6 +19,6 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ### Delete investment contributor
-DELETE {{url}}{{module-investments}}/investmentcontributors/aaa/bbb
+DELETE {{url}}{{module-investments}}/investmentcontributors/aaa
 Accept: application/json
 Authorization: Bearer {{token}}
